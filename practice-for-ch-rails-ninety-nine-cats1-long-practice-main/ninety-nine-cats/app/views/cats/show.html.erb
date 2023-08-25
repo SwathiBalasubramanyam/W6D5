@@ -1,0 +1,30 @@
+<h1> Cat: <%=@cat.name%> </h1>
+
+<table>
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+
+  
+    <%@cat.attributes.each do |k, v| %>
+        <tr>
+            <% if k != "description" %>
+                <td> <%= k.upcase %></th>
+                <td> <%= v.to_s.upcase %></th>
+            <% end %>
+        </tr>
+    <% end %>
+  
+    <tr>
+        <td>Description </td>
+    </tr>
+
+    <tr>
+        <td><%= @cat.description %></td> 
+    </tr>
+  
+</table>
+
+
+
