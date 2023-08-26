@@ -21,7 +21,7 @@ class CatsController < ApplicationController
 
     def update
         @cat = Cat.find_by(id: params[:id])
-        if cat.update(cat_params)
+        if @cat.update(cat_params)
             redirect_to cat_url(@cat)
         else
             render json: @cat.errors.full_messages, status: 422
@@ -33,7 +33,12 @@ class CatsController < ApplicationController
     end
 
     def edit
-        render :edit
+        @cat = Cat.find_by(id: params[:id])
+        if @cat
+            render :edit
+        else
+            render json: @cat.errors.full_messages, status: 422
+        end
     end
 
     private

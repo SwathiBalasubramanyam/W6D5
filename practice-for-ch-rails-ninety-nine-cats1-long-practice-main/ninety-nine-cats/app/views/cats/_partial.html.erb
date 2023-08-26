@@ -1,0 +1,49 @@
+<h1> <%= form_label %> Form </h1>
+
+<form action="<%= cat ? cat_url(cat) : cats_url %>" method="POST">
+    <input type="hidden" name="_method" value="<%= cat ? "PATCH" : "POST" %>">
+    <label for="">Name:
+        <input type="text" name="cat[name]" value="<%= cat ? cat.name : "" %>">
+    </label>
+    <br>
+    <label for="">Sex:
+        <label for="">F:
+            <input
+                type="radio"
+                name="cat[sex]"
+                value="F"
+            >
+        </label>
+        <label for="">M:
+            <input
+                type="radio"
+                name="cat[sex]"
+                value="M"
+            >
+        </label>
+    </label>
+    <br>
+    <label for="">Choose a Color:
+        <select name="cat[color]" id="">
+            <option value="">-- select a color --</option>
+            <% Cat::CAT_COLORS.each do |color| %>
+                <option value="<%= color %>"><%= color.upcase %></option>
+            <% end %>
+        </select>
+    </label>
+    <br>
+    <label for="">Birth Date:    
+        <input 
+            type="date"
+            name="cat[birth_date]"
+            value="<%= cat ? cat.birth_date : Date.today %>"
+            max="<%= Date.today %>" 
+        />
+    </label>
+    <br>
+    <label for="">Description: 
+        <textarea name="cat[description]" rows="4" cols="50"><%= cat ? cat.description : "" %></textarea>
+    </label>
+    <br>
+    <input type="submit" value="<%= cat ? "Update" : "Create" %> Cat">
+</form>
